@@ -38,6 +38,16 @@
 # upload to the git. first create a new repo with the name murders on git
 # cd ~/projects/murders
 
+# we then intitialize the directory
+# git init
+# git add README.txt
+# git commit -m "first commit. adding readme.txt file just to get started"
+# git remote add origin `https://github.com/rairizarry/murders.git`
+# git push
+
+
+
+
 
 
 
