@@ -1,0 +1,39 @@
+Another great advantage of RStudio projects is that one can share them with collaborators or the public through GitHub.
+To do this, we will need a piece of software named Git as well as access to a Unix terminal.
+Git is what we refer to as a version control system.
+These are useful for tracking changes to files as well as coordinating the editing of code by multiple collaborators.
+You need Git to interact with GitHub, which is a hosting system for code.
+Git is most effectively used using Unix, although one can also use it through RStudio.
+
+We're going to start by installing Git and Git Bash on Windows.
+There are several pieces of software that permit you to perform Unix commands on Windows.
+We'll be using Git Bash as an interface with RStudio, and it is automatically installed when we install Git for Windows.
+
+To install Git, start by searching for Git for Windows on your browser
+and clicking on the link for git-scm.com.
+
+This will take you to the download Git page from which you can download the most recent maintained build.
+
+You can then start running the installer and agree to the license. In one of the installation steps, you will be asked to pick the default editor for Git.
+
+If you do not recognize an editor you know among the options given, we recommend that you select Nano as your default editor for Git, since this is the easiest to learn.
+
+The next installation decision is actually an important one. This installation process installs Git Bash.
+
+We recommend that you select Git and optional Unix tools from the Windows
+command prompt as this will permit you to learn Unix from within RStudio.
+However, if you do this, some commands that run on your Windows command line
+will stop working.
+If you do not use your Windows command line,
+then this should not be a problem.
+Also, most, if not all, of these Windows command lines
+have a Unix equivalent that you will be able to use now.
+You can now continue selecting the default options.
+You have now installed Git on Windows.
+A final and important step is to change your preference in RStudio
+so that Git Bash becomes a default Unix shell in RStudio.
+Remember, this is only for Windows users.
+To check that you, in fact, are using Git Bash in RStudio,
+you can open a new terminal in RStudio like this,
+and it should look something like this.
+Congratulations, you just installed Git and Git Bash for Windows.
