@@ -1,0 +1,41 @@
+
+Useful Unix Commands
+
+
+COMMAND					DESCRIPTION								EXAMPLES
+------------------------------------------------------------------------------------------------------------------------------------------------
+ls 						List directory content
+------------------------------------------------------------------------------------------------------------------------------------------------
+mkdir dir				Make a directory						mkdir projects 	-make the directory projects
+																mkdir docs     	-make the directory docs
+																mkdir junk     	-make the directory junk
+------------------------------------------------------------------------------------------------------------------------------------------------
+rmdir dir				Remove a directory (directory must		rmdir junk     	-remote the directory junk
+						be empty; otherwise use "rm")
+------------------------------------------------------------------------------------------------------------------------------------------------
+cd dir					Change directory						cd /projects 	– move to the projects directory
+																				(an absolute path)
+																cd projects  	– move to the projects directory, 
+																				assuming we are already in the home directory (a relative path)
+------------------------------------------------------------------------------------------------------------------------------------------------
+cd ..					Go up one directory to the parent 		cd ../..     	– move up two parent directories from our current directory
+                        directory 
+------------------------------------------------------------------------------------------------------------------------------------------------
+cd ~					Go to the home directory
+------------------------------------------------------------------------------------------------------------------------------------------------
+cd -					Go to whatever directory you just left
+------------------------------------------------------------------------------------------------------------------------------------------------
+pwd						Print the present working directory
+------------------------------------------------------------------------------------------------------------------------------------------------
+Tab key					Autocomplete							cd d + tab 		– autocompletes to docs if it is the only directory that begins with d;
+																					or list the different options.
+------------------------------------------------------------------------------------------------------------------------------------------------
+mv file1 file2			Move or rename files					mv ~/docs/resumes/cv.tex ~/docs/reports/ 	– move the cv.tex file from the resume folder to the reports folder
+						Warning –this is permanent, and you 	mv cv.tex resume.tex 						– rename cv.tex to resume.tex
+						will not get a warning message if you   mv ~/docs/resumes ~ /docs/reports/ 			- move the resume folder into the reports folder
+						are overwriting files.
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+																
