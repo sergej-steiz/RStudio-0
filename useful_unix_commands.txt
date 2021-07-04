@@ -35,6 +35,142 @@ mv file1 file2			Move or rename files					mv ~/docs/resumes/cv.tex ~/docs/report
 						will not get a warning message if you   mv ~/docs/resumes ~ /docs/reports/ 			- move the resume folder into the reports folder
 						are overwriting files.
 ------------------------------------------------------------------------------------------------------------------------------------------------
+cp file1 file2 			Copy file1 to file2						cp ~ ~/docs/reports/ 		– make a copy of the cv.tex file from the resume folder in the reports folder
+------------------------------------------------------------------------------------------------------------------------------------------------
+rm file					Delete file 							rm ~/docs/resumes/cv.tex 	– delete the file cv.tex
+						Warning – this is permanent! 
+						You cannot retrieve files from the 
+						recycling bin!
+------------------------------------------------------------------------------------------------------------------------------------------------
+less file				View file								less ~/docs/resumes/cv.tex 	–open cv.tex in the less text viewer
+------------------------------------------------------------------------------------------------------------------------------------------------
+rm -r dir				Remove recursively all folders in 
+						directory dir and the directory itself.
+------------------------------------------------------------------------------------------------------------------------------------------------
+ls -a					List all directory content, including
+						hidden files
+------------------------------------------------------------------------------------------------------------------------------------------------
+ls -l					List all directory content in long form 
+						(including permissions, size and date)
+------------------------------------------------------------------------------------------------------------------------------------------------
+ls -t					List all directory content in 			ls -lart 		– show more information for all files in reverse chronological order for your current directory
+						chronological order 
+------------------------------------------------------------------------------------------------------------------------------------------------
+man command				Show the manual for the command. 		man ls 			– show the manual instructions for the command ls.
+						Note – this does not work for GitBash
+------------------------------------------------------------------------------------------------------------------------------------------------
+help					Show the manual for the command 		ls --help 		– show help instructions for the command ls
+						in GitBash	
+------------------------------------------------------------------------------------------------------------------------------------------------
+command1 | command2		Pipe the results of command 			man ls | less 	– show the help instructions for the command ls in the less viewer
+						1 to command 2
+------------------------------------------------------------------------------------------------------------------------------------------------
+* (wildcard)													ls *.html 		– list all the files ending in html in your current directory
+																rm *.html 		– remove all files ending in html in your current directory
+------------------------------------------------------------------------------------------------------------------------------------------------
+? (any character)												rm file.???.html 	– remove all files whose names follow the pattern; eg file-001.html, file-002.html etc.
+
+																rm file.???.* 		– remove all files whose names follow the pattern regardless of their extension; 
+																					  eg file-001.html, file-002.csv, file-any.R, etc.
+------------------------------------------------------------------------------------------------------------------------------------------------
+$var					>$ identifies a variable 				echo $HOME 			– print your home directory
+																echo $SHELL 		– print your shell name
+------------------------------------------------------------------------------------------------------------------------------------------------
+export val=value		Change the value of the variable val 	
+						(Bash shell specific)
+------------------------------------------------------------------------------------------------------------------------------------------------
+open file (mac)			Opens a file or program					open Report.Rmd 	– open Report.Rmd in RStudio
+file      (windows)
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+																
+
+
+
+
+
+
+
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
