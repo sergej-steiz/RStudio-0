@@ -1,0 +1,110 @@
+Reshaping data
+
+After the first step in the data analysis process, importing data, a common next step is to reshape the data into a form that 
+facilitates the rest of the analysis. The tidyr package includes several functions that are useful for tidying data.
+
+We will use the fertility wide format dataset as an example in this section.
+
+	library(tidyverse) 
+	library(dslabs)
+	path <- system.file("extdata", package="dslabs")
+	filename <- file.path(path, "fertility-two-countries-example.csv")
+	wide_data <- read_csv(filename)
+	
+
+wide_data data frame in a wide format:
+	
+# A tibble: 2 x 57
+  country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967` `1968` `1969` `1970` `1971` `1972`
+  <chr>        <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37   2.28   2.17   2.04   1.92   1.8 
+2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85   4.73   4.62   4.53   4.41   4.27
+# ... with 43 more variables: 1973 <dbl>, 1974 <dbl>, 1975 <dbl>, 1976 <dbl>, 1977 <dbl>, 1978 <dbl>,
+#   1979 <dbl>, 1980 <dbl>, 1981 <dbl>, 1982 <dbl>, 1983 <dbl>, 1984 <dbl>, 1985 <dbl>, 1986 <dbl>,
+#   1987 <dbl>, 1988 <dbl>, 1989 <dbl>, 1990 <dbl>, 1991 <dbl>, 1992 <dbl>, 1993 <dbl>, 1994 <dbl>,
+#   1995 <dbl>, 1996 <dbl>, 1997 <dbl>, 1998 <dbl>, 1999 <dbl>, 2000 <dbl>, 2001 <dbl>, 2002 <dbl>,
+#   2003 <dbl>, 2004 <dbl>, 2005 <dbl>, 2006 <dbl>, 2007 <dbl>, 2008 <dbl>, 2009 <dbl>, 2010 <dbl>,
+#   2011 <dbl>, 2012 <dbl>, 2013 <dbl>, 2014 <dbl>, 2015 <dbl>
+
+pivot_longer()
+
+One of the most used functions in the tidyr package is pivot_longer, which is useful for converting wide data into tidy data.
+
+In tidy data, each row represents an observation and each column represents a different variable.
+In wide data, each row includes several observations and one of the variables is stored in the header.
+
+
+The code to pivot the fertility data therefore looks like this:
+
+		new_tidy_data <- pivot_longer(wide_data, `1960`:`2015`, names_to = "year", values_to = "fertility")
+
+As with most tidyverse functions, the pivot_longer function's first argument is the data frame that will be converted (wide_data in our exmple).
+
+Through cols,the second argument we specify the columns containing observed values; these are the columns that will be pivoted. 
+The default is to pivot all columns so, in most cases, we have to specify the columns. In our example we want columns 1960, 1961 up to 2015.
+
+Through the names_to and values_to argument we will tell pivot_longer the column names we want to assign to the columns containing the 
+current column names and observations, respectively. The default names are name and value, which are often usable choices. 
+In this case a better choice for these two arguments would be year and fertility.
+
+We can also use the pipe like this:
+
+		new_tidy_data <- wide_data %>% 
+			pivot_longer(`1960`:`2015`, names_to = "year", values_to = "fertility")
+			
+We can see that the data have been converted to tidy format with columns year and fertility:
+
+
+head(new_tidy_data)
+#> # A tibble: 6 x 3
+#>   country year  fertility
+#>   <chr>   <chr>     <dbl>
+#> 1 Germany 1960       2.41
+#> 2 Germany 1961       2.44
+#> 3 Germany 1962       2.47
+#> 4 Germany 1963       2.49
+#> 5 Germany 1964       2.49
+#> # … with 1 more row
+
+and that each year resulted in two rows since we have two countries and this column was not pivoted.
+
+A somewhat quicker way to write this code is to specify which column will not include in the pivot, 
+rather than all the columns that will be pivoted:
+
+		new_tidy_data <- wide_data %>%
+			pivot_longer(-country, names_to = "year", values_to = "fertility")
+
+Note: the pivot_longer function assumes that column names are characters.
+We can convert the year column to be numbers as follow:
+
+		new_tidy_data <- wide_data %>%
+			pivot_longer(-country, names_to = "year", values_to = "fertility") %>%
+			mutate(year = as.integer(year))
+
+(We could have also used the mutate and as.numeric)
+
+Now tha the data is tidy, we can use this relatively simple ggplot code:
+
+		new_tidy_data %>% ggplot(aes(year, fertility, color = country)) + 
+			geom_point()
+			
+			
+pivot_wider()
+
+It is sometimes useful for data wrangling purposes to convert tidy data into wide data.
+The pivot_wider function is basically the inverse of pivot_longer. The first argument is for the data, but since we are using the pipe, we don’t show it. 
+The names_from argument tells pivot_wider which variable will be used as the column names. 
+The values_from argument specifies which variable to use to fill out the cells.
+
+		new_wide_data <- new_tidy_data %>% 
+			pivot_wider(names_from = year, values_from = fertility)
+		select(new_wide_data, country, `1960`:`1967`)
+
+#> # A tibble: 2 x 9
+#>   country     `1960` `1961` `1962` `1963` `1964` `1965` `1966` `1967`
+#>   <chr>        <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl>
+#> 1 Germany       2.41   2.44   2.47   2.49   2.49   2.48   2.44   2.37
+#> 2 South Korea   6.16   5.99   5.79   5.57   5.36   5.16   4.99   4.85
+
+Similar to pivot_wider, names_from and values_from default to name and value.
+
